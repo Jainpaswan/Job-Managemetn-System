@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Header from "./components/Header";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -30,6 +31,15 @@ function App() {
           element={
             <ProtectedRoute>
               <Home/>
+          
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+             <Profile/>
           
             </ProtectedRoute>
           }
