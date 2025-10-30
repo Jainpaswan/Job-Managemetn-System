@@ -3,7 +3,7 @@ import { work } from "../utils/data";
 
 const Working = () => {
   return (
-    <div className="mt-10 pb-5">
+    <div className="mt-10 pb-5 text-white">
       <div className="text-4xl text-center font-semibold mb-3 text-mine-shaft-100">
         How it <span className="text-cyan-/-aqua-500">Works</span>
       </div>

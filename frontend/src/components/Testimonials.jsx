@@ -3,7 +3,7 @@ import { testimonials } from '../utils/data'
 
 const Testimonials = () => {
   return (
-    <div className='mt-10  p-2 '>
+    <div className='mt-10 text-white p-2 '>
        <div className='text-4xl text-center mb-3 font-semibold text-mine-shaft-100'>What
             <span className='text-cyan-/-aqua-500'> Users </span>says about us?
         </div>

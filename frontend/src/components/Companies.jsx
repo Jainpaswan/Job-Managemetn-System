@@ -3,7 +3,7 @@ import { companies } from '../utils/data'
 const Companies = () => {
   return (
     <div className='pb-2'>
-      <div className='text-4xl text-center font-semibold text-mine-shaft-100'>Trusted by <span className='text-cyan-/-aqua-500'>1000+</span> Companies</div>
+      <div className='text-4xl text-center font-semibold text-mine-shaft-100 text-white'>Trusted by <span className='text-cyan-/-aqua-500'>1000+</span> Companies</div>
       <div className="relative flex overflow-x-hidden">
   <div class="flex py-12 animate-marquee whitespace-nowrap space-x-8">
     {

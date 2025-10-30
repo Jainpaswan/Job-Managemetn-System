@@ -26,11 +26,11 @@ const JobCategory = () => {
   }, []);
 
   return (
-    <div className='mt-10 pb-5' id='services'>
-        <div className='text-4xl text-center mb-3 font-semibold text-mine-shaft-100'>Browse
-            <span className='text-cyan-/-aqua-500'> Job </span>Category
+    <div className='mt-10 pb-5'  id='services'>
+        <div className='text-4xl text-white text-center mb-3 font-semibold text-mine-shaft-100'>Browse
+            <span className='text-cyan-500'> Job </span>Category
         </div>
-        <div className='text-lg text-mine-shaft-300 text-center w-1/3 mx-auto'>Explore diverse job opportunities tailored to your skills.Start your career today!</div>
+        <div className='text-lg text-white text-mine-shaft-300 text-center w-1/3 mx-auto'>Explore diverse job opportunities tailored to your skills.Start your career today!</div>
         <div>
             <div className='relative w-full mx-auto p-4 bg-mine-shaft-950 text-white'>
               <div ref={carouselRef} className='flex items-center justify-center space-x-4 overflow-hidden'>

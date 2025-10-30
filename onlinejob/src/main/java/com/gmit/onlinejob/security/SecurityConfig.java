@@ -77,7 +77,10 @@ public class SecurityConfig {
                 .sessionManagement(s ->
                         s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/companies/register", "/companies/login", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/auth/**",
+                                "/companies/register", "/companies/login",
+                                "/users/register", "/users/login",
+                                "/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider());
