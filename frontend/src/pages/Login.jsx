@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../store/authSlice";
 import api from "../services/api";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,18 +27,58 @@ const Login = () => {
 
       dispatch(setCredentials({ token,id, email, role }));
 
-      // 🎯 Redirect based on role
-      if (role === "COMPANY") navigate("/company/dashboard");
-      else navigate("/home");
+      // // 🎯 Redirect based on role
+      // if (role === "COMPANY") navigate("/company/dashboard");
+      // else navigate("/home");
+
+      toast.success("✅ Login successful!", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        transition: Bounce,
+      });
+
+      // 🧭 Redirect based on role after short delay
+      setTimeout(() => {
+        if (role === "COMPANY") navigate("/company/dashboard");
+        else navigate("/home");
+      }, 2000);
 
     } catch (err) {
       console.error(err);
-      alert("Login failed!");
+      toast.error("❌ Login failed! Please check your credentials.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        transition: Bounce,
+      });
     }
-  };
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
       <form
         onSubmit={handleLogin}
         className="w-96 p-8 rounded-2xl bg-black/30 backdrop-blur-md shadow-lg flex flex-col gap-6"
