@@ -66,7 +66,7 @@ const Header = () => {
                   </Link>
                 ) : (<>
                   <Link
-                    to="/user-dashboard"
+                     to="/applied-jobs"
                     className="block px-4 py-2 text-white hover:bg-purple-600 transition"
                     onClick={() => setDropdownOpen(false)}
                   >

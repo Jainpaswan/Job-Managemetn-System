@@ -19,10 +19,11 @@ const Login = () => {
       // 🎯 Extract token & role
       const token = res.data.token;
        let role = "USER";
+       const id=res.data.user ? res.data.user.id : res.data.company.id;
     if (res.data.user) role = res.data.user.role;
     else if (res.data.company) role = res.data.company.role; // fallback if backend doesn't send role
 
-      dispatch(setCredentials({ token, email, role }));
+      dispatch(setCredentials({ token,id, email, role }));
 
       // 🎯 Redirect based on role
       if (role === "COMPANY") navigate("/company/dashboard");

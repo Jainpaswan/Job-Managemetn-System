@@ -22,12 +22,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      const { token, email, role } = action.payload;
+      const { token, id, email, role } = action.payload;
       state.token = token;
-      state.user = { email, role };
+      state.user = { id, email, role };
+
 
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify({ email, role }));
+      localStorage.setItem("user", JSON.stringify({ id, email, role }));
     },
     logout: (state) => {
       state.token = null;

@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
 import JobDetails from "./pages/JobDetails";
+import ViewAppliedJobs from "./pages/ViewAppliedJob";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -51,6 +52,15 @@ function App() {
           element={
             <ProtectedRoute>
              <Profile/>
+          
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/applied-jobs"
+          element={
+            <ProtectedRoute>
+            <ViewAppliedJobs/>
           
             </ProtectedRoute>
           }
