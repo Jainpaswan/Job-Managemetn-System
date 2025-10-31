@@ -1,91 +1,72 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import CompanyRegister from "../components/CompanyRegister";
+import UserRegister from "../components/UserRegister";
 
 const Register = () => {
-  const navigate = useNavigate();
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const website = e.target.website.value;
-    const contact = e.target.contact.value;
-    const location = e.target.location.value;
-
-    try {
-      const res = await api.post("/companies/register", {
-        name,
-        email,
-        password,
-        website,
-        contact,
-        location,
-      });
-      alert("Registration successful!");
-      navigate("/"); // go to login after successful registration
-    } catch (err) {
-      console.error(err);
-      alert("Registration failed!");
-    }
-  };
+  const [role, setRole] = useState("USER");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
-      <form
-        onSubmit={handleRegister}
-        className="w-96 p-8 rounded-2xl bg-black/30 backdrop-blur-md shadow-lg flex flex-col gap-4"
-      >
-        <h2 className="text-2xl font-bold text-white text-center">Register</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-black  text-white">
+      <div className="w-96 p-8 rounded-2xl bg-black/30 backdrop-blur-md shadow-xl border mt-10 border-gray-700">
+        <h2 className="text-2xl font-bold text-center mb-6 tracking-wide">
+          Register as{" "}
+          <span className="text-purple-500">
+            {role === "USER" ? "User" : "Company"}
+          </span>
+        </h2>
 
-        <input
-          name="name"
-          type="text"
-          placeholder="Company Name"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          required
-        />
-        <input
-          name="website"
-          type="url"
-          placeholder="Website (https://example.com)"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
-        <input
-          name="contact"
-          type="text"
-          placeholder="Contact Number"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
-        <input
-          name="location"
-          type="text"
-          placeholder="Location"
-          className="p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
+        {/* Toggle buttons */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => setRole("USER")}
+            className={`px-5 py-2 rounded-l-lg font-medium transition-all duration-300 ${
+              role === "USER"
+                ? "bg-purple-600 text-white shadow-lg"
+                : "bg-gray-800 text-gray-400 hover:text-white"
+            }`}
+          >
+            User
+          </button>
+          <button
+            onClick={() => setRole("COMPANY")}
+            className={`px-5 py-2 rounded-r-lg font-medium transition-all duration-300 ${
+              role === "COMPANY"
+                ? "bg-purple-600 text-white shadow-lg"
+                : "bg-gray-800 text-gray-400 hover:text-white"
+            }`}
+          >
+            Company
+          </button>
+        </div>
 
-        <button
-          type="submit"
-          className="p-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
-        >
-          Register
-        </button>
-      </form>
+        {/* Animated Form Switch */}
+        <div className="relative min-h-[350px]">
+          <AnimatePresence mode="wait">
+            {role === "USER" ? (
+              <motion.div
+                key="user"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.3 }}
+              >
+                <UserRegister />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="company"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.3 }}
+              >
+                <CompanyRegister />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 };

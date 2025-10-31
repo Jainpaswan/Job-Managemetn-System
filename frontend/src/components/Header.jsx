@@ -58,7 +58,7 @@ const Header = () => {
               <div className="absolute right-0 mt-2 w-48 bg-black/80 backdrop-blur-md shadow-lg rounded-lg overflow-hidden">
                 {userRole === "COMPANY" ? (
                   <Link
-                    to="/company-dashboard"
+                    to="/company/dashboard"
                     className="block px-4 py-2 text-white hover:bg-purple-600 transition"
                     onClick={() => setDropdownOpen(false)}
                   >
@@ -79,15 +79,16 @@ const Header = () => {
                   >
                     All Jobs
                   </Link>
-                  </>
-                )}
-                <Link
+                  <Link
                   to="/profile"
                   className="block px-4 py-2 text-white hover:bg-purple-600 transition"
                   onClick={() => setDropdownOpen(false)}
                 >
                   Profile
                 </Link>
+                  </>
+                )}
+                
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-2 text-white hover:bg-red-600 transition"
